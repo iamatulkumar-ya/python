@@ -38,7 +38,7 @@ def api_test():
             return generate_response(HTTPStatus.BAD_REQUEST, "Bad Input. Input body is missing required 'input_code' key or data type is not int.")
 
     except Exception as e:
-        generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
+        return generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
  
 @app.route('/v1/medicinebyname', methods=['POST'])
 def medicine_by_name():
@@ -59,7 +59,7 @@ def medicine_by_name():
             return generate_response(HTTPStatus.BAD_REQUEST, "Bad Input. Input body is missing required 'medicine_name' key.")
 
     except Exception as e:
-        generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
+        return generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
     
 
 @app.route('/v1/medicinebyuses', methods=['POST'])
@@ -81,7 +81,7 @@ def medicine_by_uses():
             return generate_response(HTTPStatus.BAD_REQUEST, "Bad Input. Input body is missing required 'medicine_uses' key.")
 
     except Exception as e:
-        generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
+        return generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
     
 @app.route('/v1/medicinebycomposition', methods=['POST'])
 def medicine_by_composition():
@@ -102,9 +102,9 @@ def medicine_by_composition():
             return generate_response(HTTPStatus.BAD_REQUEST, "Bad Input. Input body is missing required 'medicine_composition' key.")
 
     except Exception as e:
-        generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
+        return generate_response(HTTPStatus.INTERNAL_SERVER_ERROR, f"Exception occurred. Error - {str(e)}")
 
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
