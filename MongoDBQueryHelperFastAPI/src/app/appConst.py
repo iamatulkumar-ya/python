@@ -1,1 +1,0 @@
-appName="MongoDB Query Helper"
