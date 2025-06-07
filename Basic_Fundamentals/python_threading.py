@@ -7,7 +7,9 @@ import threading
 import time
 from datetime import datetime
 
+global results
 results = []
+
 
 def do_process(process_name:str, delay:int):
     
@@ -17,7 +19,7 @@ def do_process(process_name:str, delay:int):
  
 
 def do_process1(process_name:str, delay:int):
-    global results
+    
     print(f"Execution started for process 1: {process_name} on {datetime.now()}")
     time.sleep(delay)
     results.append(f"Completed process - {process_name}")
@@ -67,7 +69,8 @@ if __name__ == '__main__':
 
     print("\n All threads have been joined")
 
-    print("results value in main", results)
+    # this value will be same as process assignment value because, in threading memory utilization gets shared for all threads
+    print("results value in main", results) 
     print("main completed", datetime.now())
 
 

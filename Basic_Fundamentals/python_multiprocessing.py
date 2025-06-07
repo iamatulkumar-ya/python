@@ -8,10 +8,12 @@ import multiprocessing
 from datetime import datetime
 import time
 
+global cubeResult
 cubeResult = 0
 
+
 def print_cube(num): 
-    global cubeResult
+    
     time.sleep(2)
     cubeResult = num * num * num
     print("Cube: {}, computed on {}".format(cubeResult, datetime.now()))
@@ -40,6 +42,7 @@ if __name__ == "__main__":
     p2.join()
 
     # printing cubeResult
+     # this value will be empty as, in multiprocessing memory utilization is different for each process
     print("cubeResult in main", cubeResult) # will give 0 as multiprocesing runs in different memory space
 
     # both processes finished 
