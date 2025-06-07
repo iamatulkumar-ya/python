@@ -7,13 +7,24 @@ import threading
 import time
 from datetime import datetime
 
+results = []
 
 def do_process(process_name:str, delay:int):
+    
     print(f"Execution started for process: {process_name} on {datetime.now()}")
     time.sleep(delay)
     print(f"\nExecution ended for process: {process_name} on {datetime.now()}")
  
 
+def do_process1(process_name:str, delay:int):
+    global results
+    print(f"Execution started for process 1: {process_name} on {datetime.now()}")
+    time.sleep(delay)
+    results.append(f"Completed process - {process_name}")
+    print("results value in thread method", results)
+    print(f"\nExecution ended for process 1: {process_name} on {datetime.now()}")
+    
+ 
 
 process= [
     "process1",
@@ -29,21 +40,35 @@ for p in process:
         delay = 6
 
     # The target is the function to be executed by the thread whereas the args is the arguments to be passed to the target function. 
-    t = threading.Thread(target=do_process, args=(p, delay))
+
+    if p == "process1":
+        t = threading.Thread(target=do_process1, args=(p, delay))
+    else:
+        t = threading.Thread(target=do_process, args=(p, delay))
+    
     threads.append(t)
 
     if p == "process2":
-        t.daemon = True
-
-# let's start the threads
-for t in threads:
-    t.start()
-print("\n All threads have been started")
+        t.daemon = True 
 
 
-# let's wait for each threads to finish
-for t in threads:
-    t.join()
+if __name__ == '__main__':
+    print("main started", datetime.now())
+    # let's start the threads
+    for t in threads:
+        t.start()
+        print("thread id", t.native_id)
+    print("\n All threads have been started")
 
-print("\n All threads have been joined")
+
+    # let's wait for each threads to finish
+    for t in threads:
+        t.join()
+
+    print("\n All threads have been joined")
+
+    print("results value in main", results)
+    print("main completed", datetime.now())
+
+
 
