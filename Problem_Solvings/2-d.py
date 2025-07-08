@@ -1,20 +1,10 @@
-#!/bin/python3
-
 import math
 import os
 import random
 import re
 import sys
 
-
-
-#
-# Complete the 'numCells' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts 2D_INTEGER_ARRAY grid as parameter.
-#
-
+ 
 def get_neighbor(n, m, r, c, grid):
     neighbors = []
     if n-1 >=0:
@@ -54,8 +44,7 @@ def numCells(grid):
     print(dominentCell)
     return len(dominentCell)
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+if __name__ == '__main__': 
 
     grid_rows = int(input().strip())
     grid_columns = int(input().strip())
@@ -67,6 +56,4 @@ if __name__ == '__main__':
 
     result = numCells(grid)
 
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+    print(result)
