@@ -12,11 +12,11 @@ global cubeResult
 cubeResult = 0
 
 
-def print_cube(num): 
+def print_cube(num, extra_msg): 
     
     time.sleep(2)
     cubeResult = num * num * num
-    print("Cube: {}, computed on {}".format(cubeResult, datetime.now()))
+    print("Cube: {}, computed on {} and extra message is {}".format(cubeResult, datetime.now(), extra_msg))
   
 
 def print_square(num): 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     print("main process started on ", datetime.now())
     # creating processes
     p1 = multiprocessing.Process(target=print_square, args=(10, ))
-    p2 = multiprocessing.Process(target=print_cube, args=(10, ))
+    p2 = multiprocessing.Process(target=print_cube, args=(10, ), kwargs={"extra_msg":"special value from kwargs"})
 
     # starting process 1
     p1.start()
